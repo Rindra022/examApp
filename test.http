@@ -1,0 +1,24 @@
+### 1. Submit a valid JPEG picture
+POST {{baseUrl}}/pictures?email={{email}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="cat.jpg"
+Content-Type: image/jpeg
+
+< ./test-images/cat.jpg
+--WebAppBoundary--
+
+### 2. Submit an invalid format (should fail with 400)
+POST {{baseUrl}}/pictures?email={{email}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="cat.gif"
+Content-Type: image/gif
+
+< ./test-images/cat.gif
+--WebAppBoundary--
+
+### 3. Find all submissions
+GET {{baseUrl}}/pictures

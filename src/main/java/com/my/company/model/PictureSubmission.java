@@ -1,7 +1,8 @@
 package com.my.company.model;
 
+import java.time.Instant;
 import java.util.UUID;
 import lombok.Builder;
 
 @Builder
-public record PictureSubmission(UUID id, String fileName, String email) {}
+public record PictureSubmission(UUID id, String fileName, String email, Instant createdAt) {}

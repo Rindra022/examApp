@@ -10,7 +10,7 @@ plugins {
 
     id 'jacoco'
 
-    
+
 }
 
 jacoco {
@@ -25,7 +25,7 @@ repositories {
 }
 
 java {
-    group = 'com.my.company'
+    group = 'com.course.app'
     sourceCompatibility = '21'
     targetCompatibility = '21'
 }
@@ -153,8 +153,7 @@ dependencies {
     testImplementation 'org.testcontainers:testcontainers-junit-jupiter:2.0.2'
     testImplementation 'org.junit-pioneer:junit-pioneer:2.2.0'
 
-com.openhtmltopdf:openhtmltopdf-pdfbox:1.0.10
-
+    implementation 'com.openhtmltopdf:openhtmltopdf-pdfbox:1.0.10'
 
 
 }

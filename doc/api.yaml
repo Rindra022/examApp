@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Picture Submission API
+  version: 1.0.0
+  description: Submit pictures (jpeg/png), get them converted to black & white asynchronously.
+
+paths:
+  /pictures:
+    post:
+      summary: Submit a picture
+      operationId: submitPicture
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: email
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        '200':
+          description: Picture submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PictureSubmission'
+        '400':
+          description: Unsupported image format (only jpeg/png accepted)
+
+    get:
+      summary: List all picture submissions
+      operationId: findAllPictures
+      responses:
+        '200':
+          description: List of submissions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PictureSubmission'
+
+components:
+  schemas:
+    PictureSubmission:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        email:
+          type: string
+          format: email
+        createdAt:
+          type: string
+          format: date-time
